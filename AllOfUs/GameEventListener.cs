@@ -18,7 +18,7 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
         {
             string name = player.PlayerInfo.PlayerName;
             byte color = player.PlayerInfo.ColorId;
-            await player.SetNameAsync("[FF0000FF]All Of Us Bot | Public");
+            await player.SetNameAsync("[FF0000FF] DropShip");
             await player.SetColorAsync((byte)0);
             await player.SendChatAsync(message);
             await player.SetNameAsync(name);
@@ -38,7 +38,6 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
             {
                 await Task.Delay(1000);
                 await SendMessage(e.PlayerControl, "Welcome to the server!");
-                await SendMessage(e.PlayerControl, "This server is powered by All of Us Bot, an Impostor plugin designed to be used with All of Us Mod, a 100 Player Mod for Among Us!");
                 await SendMessage(e.PlayerControl, "Type /help for a list of all the commands!");
             }
 
@@ -72,12 +71,12 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                         if (e.ClientPlayer.IsHost)
                         {
                             await SendMessage(e.PlayerControl, "Commands: /map, /name, /color, /playerlimit, /implimit, /help");
-                            await SendMessage(e.PlayerControl, "Type /<command name> to learn how to use it");
+                            await SendMessage(e.PlayerControl, "Type /<command name> to learn more");
                         }
                         else
                         {
                             await SendMessage(e.PlayerControl, "Commands: /name, /color, /help");
-                            await SendMessage(e.PlayerControl, "Type /<command name> to learn how to use it");
+                            await SendMessage(e.PlayerControl, "Type /<command name> to learn more");
                         }
                         break;
                     case "/color":
@@ -85,7 +84,7 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                         {
                             if (Colors.ContainsKey(args[1]))
                             {
-                                await SendMessage(e.PlayerControl, "Color changed successfuly!");
+                                await SendMessage(e.PlayerControl, "Color Change Successful!");
                                 await e.PlayerControl.SetColorAsync((byte)Colors[args[1]]);
                                 break;
                             }
@@ -114,7 +113,7 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                                     if (playerName == args[1])
                                     {
                                         nameUsed = true;
-                                        await SendMessage(e.PlayerControl, "Name already taken!");
+                                        await SendMessage(e.PlayerControl, "Name is already taken!");
                                         break;
                                     }
                                     else
@@ -169,7 +168,7 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                                         if ((e.Game.Options.MaxPlayers / limit) > 2f)
                                         {
                                             e.Game.Options.NumImpostors = (byte)limit;
-                                            await SendMessage(e.PlayerControl, $"Impostor limit has been set to {args[1]}!");
+                                            await SendMessage(e.PlayerControl, $"Impostor limit set to {args[1]}!");
                                             await e.Game.SyncSettingsAsync();
                                         }
                                         else
@@ -194,7 +193,7 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                         }
                         else
                         {
-                            await SendMessage(e.PlayerControl, "[FF0000FF] You can't use that command!");
+                            await SendMessage(e.PlayerControl, "[FF0000FF] Denied");
                         }
                         break;
                     case "/playerlimit":
@@ -230,7 +229,7 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                         }
                         else
                         {
-                            await SendMessage(e.PlayerControl, "[FF0000FF] You can't use that command!");
+                            await SendMessage(e.PlayerControl, "[FF0000FF] Denied");
                         }
                         break;
 
@@ -273,13 +272,10 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                                 await SendMessage(e.PlayerControl, "/map {map}\nSet the map without making a new lobby! Maps: Skeld, Mira/MiraHQ, Polus");
                             }
                         }
-                        else await SendMessage(e.PlayerControl, "[FF0000FF] You can't use that command!");
+                        else await SendMessage(e.PlayerControl, "[FF0000FF] Denied");
                         break;
                     case "/about":
-                        await SendMessage(e.PlayerControl, "All of Us is a 100 Player Mod for Among Us developed by XtraCube and Pure, and is based on a mod by andry08.");
-                        await SendMessage(e.PlayerControl, "All Of Us Bot is a server plugin for the custom Among Us server, Impostor. It can't be used to play 100 player games without the client mod!");
-                        await SendMessage(e.PlayerControl, "This server is using the public version of the mod with stripped down features!");
-                        break;
+                        await SendMessage(e.PlayerControl, "DropShip was Developed by DarkPheonix#0124");
                 }
 
             }
